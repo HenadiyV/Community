@@ -1,0 +1,115 @@
+﻿@model IEnumerable<Community.Domain.Entities.User>
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Поиск</title>
+    <meta name="keywords" content="Blog website templates" />
+    <meta name="description" content="Author - Personal Blog Wordpress Template">
+    <meta name="author" content="Rabie Elkheir">
+    <meta name="community" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap Core CSS -->
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet">
+    <!-- Owl Carousel Assets -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+    <!--Google Fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800|Raleway:400,500,700|Roboto:300,400,500,700,900|Ubuntu:300,300i,400,400i,500,500i,700" rel="stylesheet">
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="~/Content/style.css" />
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="~/Content/responsive.css" />
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<html>
+<body>
+    <div class="row">
+        <div class="col-md-3 ">
+            <div class="site-output">
+                <div class="col-md-2 no-padding-left hidden-sm hidden-xs">
+                    <div class="left-sidebar">
+                        <div id="sidebar-stick">
+
+                            <ul class="menu-sidebar">
+                                <li><a href="~/Admin/SearchAdmin"><i class="fa fa-search"></i>Расширенный поиск</a></li>
+                                <li><a href="~/Admin/Index"><i class="fa fa-reply"></i>Вернуться</a></li>
+                                @*<li><a href="~/Home/AddFrend"><i class="fa fa-edit"></i>Добавить в друзья</a></li>
+                                    <li><a href="~/Home/FrendRemove"><i class="fa fa-gear"></i>Удалить из друзей</a></li>*@
+                                <li><a href="~/Home/Index"><i class="fa fa-sign-out"></i>Выход</a></li>
+                            </ul>
+
+                        </div><!-- // sidebar-stick -->
+                        <div class="clear"></div>
+                    </div><!-- // left-sidebar -->
+                </div><!-- // col-md-2 style="width:50%"-->
+            </div>
+        </div>
+        <div class="col-md-9">
+
+
+            @*@{
+                ViewBag.Title = "Данные пользователей";
+                AjaxOptions ajaxOptions = new AjaxOptions
+                {
+                    UpdateTargetId = "tableBody",
+                    Url = Url.Action("AddFrend"),
+                    LoadingElementId = "loading",
+                    LoadingElementDuration = 1000,
+                };
+            }*@
+
+            @*@Scripts.Render("~/scripts/jquery-1.10.2.min.js")
+        @Scripts.Render("~/scripts/jquery.unobtrusive-ajax.min.js")*@
+            <div id="searchresults">
+                <h2> Результат поиска</h2>
+                @foreach (var p in Model)
+                {
+                    
+                        <div class="row" style="border:2px solid;width:70%">
+                            <div class="col-md-3">
+                                @ViewBag.mess
+                                <h3>@p.Name</h3>
+                                <h3>@p.FirstName</h3>
+                                <h3>@p.Surname</h3>
+                                <h3>@p.Email</h3>
+
+                               </div>
+
+                                <div class="col-md-3">
+                                    @using (Html.BeginForm("AddDescriptionAdmin", "Admin", FormMethod.Get))
+                                    {
+                                        <div>
+                                            <input type="number" hidden="hidden" name="a" value="3" />
+
+                                            <input type="number" hidden="hidden" name="Id" value="@p.Id" /><br />
+                                            <button type="submit">Написать</button>
+                                        </div>
+                                    }
+                                
+
+                                    @using (Html.BeginForm("ViewUser", "Home", FormMethod.Get))
+                                    {
+                                        <div>
+                                            <input type="number" hidden="hidden" name="Id" value="@p.Id" /><br />
+                                            <button type="submit">Подробно</button>
+
+
+                                        </div>
+                                    }
+                                    <div></div>
+                                </div>
+                            </div>
+                    
+                }
+                </div>
+            </div>
+</body>
+</html>

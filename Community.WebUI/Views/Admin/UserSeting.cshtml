@@ -1,0 +1,97 @@
+﻿@model Community.Domain.Entities.UserSeting
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>
+        @{
+            ViewBag.Title = "UserSeting";
+        }
+    </title>
+</head>
+<body>
+   
+    <div class="row">
+        <div class="col-md-3">
+            <div class="site-output">
+                <div class="col-md-6 no-padding-left hidden-sm hidden-xs">
+                    <div class="left-sidebar">
+                        <div id="sidebar-stick">
+
+                            <ul class="menu-sidebar">
+                                <li><a href="~/Admin/ListUser"><i class="fa fa-reply"></i>Вернуться</a></li>
+
+                                <li><a href="~/Admin/Index"><i class="fa fa-sign-out"></i>Выход</a></li>
+                            </ul>
+
+                        </div><!-- // sidebar-stick -->
+                        <div class="clear"></div>@**@
+                    </div><!-- // left-sidebar -->
+                </div><!-- // col-md-2 -->
+            </div>
+        </div>
+        <div class="col-md-9">
+            <h2>Настройки отображения личных данных</h2>
+            <h1 class="new-video-title"><i class="fa fa-bolt"></i> @ViewBag.Name</h1>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(model => model.Id)
+                @Html.HiddenFor(model => model.IdUser)
+                @Html.HiddenFor(model => model.Avatar)
+                <div class="col-sm-12">
+                    <div class="row">
+                        
+
+                            <div class="col-md-12">
+                                <h3>Снимите отметки с пунктов которые Вы хотите скрыть при отображении информации о Вас.</h3>
+                            </div>
+                            @*<div class="col-md-4">
+                                <img src="~/Files/User/@Model.IdUser/avatar/@Model.Avatar" alt="" style="width:200px" />
+                            </div>
+                            <div class="col-md-8"> </div>*@
+                        <div class="col-md-8">
+
+                            <div class="col-md-4">
+                                <label>Показывать адрес </label>
+                            </div>
+                            @Html.CheckBoxFor(x => x.Address)
+                        </div>
+                        <div class="col-md-8">
+                            <div class="col-md-4">
+                                <label>Показывать возраст</label>
+                            </div>
+                            @Html.CheckBoxFor(x => x.Age)
+                        </div>
+
+                        <div class="col-md-8">
+                            <div class="col-md-4">
+                                <label>Показывать email</label>
+                            </div>
+                            @Html.CheckBoxFor(x => x.Email)
+                        </div>
+
+                        <div class="col-md-8">
+                            <div class="col-md-4">  <label>Номер телефона</label></div>
+                            @Html.CheckBoxFor(x => x.Phone)
+                        </div>
+
+                        <div class="col-md-8">
+                            <div class="col-md-4">
+                                <label>Показывать фамилию</label>
+                            </div>
+                            @Html.CheckBoxFor(x => x.Surname)
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <button type="submit" class="btn btn-dm btn-info">Сохранить</button>
+                </div>
+
+            }
+        </div>
+    </div>
+</body>
+</html>
+
+

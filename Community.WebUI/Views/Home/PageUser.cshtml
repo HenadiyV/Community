@@ -1,0 +1,228 @@
+﻿
+
+@model Community.Domain.Entities.ComplectUser
+
+<!--======= header =======-->
+
+<header>
+    <div class="container-full">
+        <div class="row">
+            @*<div class="col-lg-2 col-md-2 col-sm-12">
+                <a id="main-category-toggler" class="hidden-md hidden-lg hidden-md" href="#">
+                    <i class="fa fa-navicon"></i>
+                </a>
+                <a id="main-category-toggler-close" class="hidden-md hidden-lg hidden-md" href="#">
+                    <i class="fa fa-close"></i>
+                </a>
+               
+            </div>*@<!-- // col-md-2 -->
+            <div class="col-lg-4 col-md-4 col-sm-3 hidden-xs hidden-sm">
+                <div>
+                    @using (Html.BeginForm("PipelSearch", "Home", FormMethod.Post, new { @class = "search-form" }))
+                    {
+                        <input type="text" name="name" placeholder="Search pipel..." />
+                        <input type="submit" value="Поиск" />
+                    }
+                    <div id="results">
+
+                    </div>
+                </div>
+            </div><!-- // col-md-3 -->
+
+            @*<div class="col-lg-3 col-md-3 col-sm-5 hidden-xs hidden-sm">
+                <ul class="top-menu">
+                    <li><a href="01-home.html">home</a></li>
+                    <li><a href="#">trending</a></li>
+                    <li><a href="14-history.html">history</a></li>
+                </ul>
+            </div>*@<!-- // col-md-4 -->
+            <div class="col-lg-3 col-md-3 col-sm-3 hidden-xs hidden-sm">
+                <ul class="notifications">
+                    @*друзьяdata-toggle="dropdown"*@
+                    <li class="dropdown">
+                        <a href="~/Home/ListUserHome">
+                            <i class="fa fa-users"></i>
+
+                            <span class="badge badge-color1 header-badge">@Model.countFrend</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-friend-requests "></ul>
+                    </li>
+                    @*информ*@
+                    <li class="dropdown">
+                        <a href="#" data-toggle="dropdown">
+                            <i class="fa fa-info-circle"></i>
+                            <span class="badge badge-color2 header-badge">@Model.countDescription</span>
+                        </a>
+                      
+                        @*оповещение*@
+                        
+                    <li class="dropdown">
+                        @if (Model.countFrendBirthDay > 0)
+                        {<a href="~/Home/FrendBithDay">
+                                <i class="fa fa-bell-o"></i>
+                                <span class="badge badge-color3 header-badge">@Model.countFrendBirthDay</span>
+                            </a>}
+                        else { <a href="#">
+    <i class="fa fa-bell-o"></i>
+    <span class="badge badge-color3 header-badge">@Model.countFrendBirthDay</span>
+</a>}
+                    </li>
+                        @*<ul class="dropdown-menu dropdown-notifications-items ">
+                <li>
+                    <div class="notification-info">
+                        <a href="#">
+                            <i class="fa fa-video-camera color-1"></i>
+                            <strong>Rabie Elkheir</strong> Add a new <span>Video</span>
+                            <h5 class="time">4 hours ago</h5>
+                        </a>
+                    </div>
+                </li>
+                <li>
+                    <div class="notification-info">
+                        <a href="#">
+                            <i class="fa fa-thumbs-up color-2"></i>
+                            <strong>Rabie Elkheir</strong> Add a new <span>Video</span>
+                            <h5 class="time">4 hours ago</h5>
+                        </a>
+                    </div>
+                </li>
+                <li>
+                    <div class="notification-info">
+                        <a href="#">
+                            <i class="fa fa-comment color-3"></i>
+                            <strong>Rabie Elkheir</strong> Add a new <span>Video</span>
+                            <h5 class="time">4 hours ago</h5>
+                        </a>
+                    </div>
+                </li>
+                <li>
+                    <div class="notification-info">
+                        <a href="#">
+                            <i class="fa fa-video-camera color-1"></i>
+                            <strong>Rabie Elkheir</strong> Add a new <span>Video</span>
+                            <h5 class="time">4 hours ago</h5>
+                        </a>
+                    </div>
+                </li>
+                <li>
+                    <a href="#" class="all_notifications">All Notifications</a>
+                </li>
+            </ul>
+
+        </li>*@
+
+</ul>@*//оповещение*@
+</div>
+            <!-- Users  -->
+            <div class="col-lg-5 col-md-5 col-sm-6 hidden-sm hidden-xs">
+                <div class="dropdown">
+                    <a data-toggle="dropdown" href="#" class="user-area">
+
+                        <div class="thumb"><img src="~/Files/user/@Model.UserInfo._IdUser/Avatar/@Model.UserInfo._Avatar" alt=""></div>
+                        <h2>@Model.UserInfo._Name</h2>
+
+                        @if (Model.UserInfo._SurnameSeting)
+                        {
+                            <h2>@Model.UserInfo._Surname</h2>
+                        }
+
+                        @if (Model.UserInfo._AgeSeting)
+                        {
+
+                            <h3>@Model.UserInfo._Age </h3>
+                        }
+                        @if (Model.UserInfo._EmailSeting)
+                        {
+                            <h2>@Model.UserInfo._Email</h2>
+                        }
+                        @if (Model.UserInfo._PhoneSeting)
+                        {
+                            <h2>@Model.UserInfo._Phone</h2>
+                        }
+
+                        <i class="fa fa-angle-down"></i>
+                    </a>
+                    <ul class="dropdown-menu account-menu">
+                        <li><a href="~/Home/Profil"><i class="fa fa-edit color-1"></i>Профиль</a></li>
+                        <li><a href="~/Home/Seting"><i class="fa fa-gear color-2"></i>Настройки</a></li>
+                        <li><a href="~/Home/Index"><i class="fa fa-sign-out color-4"></i>Выход</a></li>
+                    </ul>
+
+                </div>
+            </div><!-- // Users -->
+        </div><!-- // row -->
+    </div><!-- // container-full -->
+</header><!-- // header -->
+<div id="main-category">
+    <div class="container-full">
+        <div class="row">
+            <div class="col-md-12">
+                <ul class="main-category-menu">
+
+                    <li class="color-1">
+                        <a href="02-category.html"><i class="fa fa-send-o"></i>Сообщениe</a>
+                        <ul>
+                            <li> @Html.ActionLink("Всем", "AddDescription", new { a = 1, Id = 0 })</li>
+                            <li> @Html.ActionLink("Друзьям", "AddDescription", new { a = 2, Id = 0 })</li>
+                            <li> @Html.ActionLink("Приватное", "ListUserHome", new { a = 3, Id = 0 })</li>
+                            <li> @Html.ActionLink("Админ", "AddDescription", new { a = 4, Id = 1 })</li>
+                        </ul>
+                    </li>
+                    <li class="color-2"><a href="~/Home/Profil"><i class="fa fa-edit"></i>Профиль</a></li>
+                    <li class="color-3"><a href="~/Home/Seting"><i class="fa fa-gear"></i>Настройки</a></li>
+                    <li class="color-4"><a href="~/Home/Index"><i class="fa fa-sign-out"></i>Выход</a></li>
+
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+@*@{Html.RenderPartial("UserHeder");}*@
+<div class="site-output">
+
+    <div class="col-md-2 no-padding-left hidden-sm hidden-xs">
+        <div class="left-sidebar">
+            <div id="sidebar-stick">
+                <ul class="menu-sidebar">
+                    <li><a href="~/Home/Search"><i class="fa fa-search"></i>Поиск</a></li>
+                    <li><a href="~/Home/ListUserHome"><i class="fa  fa-users"></i>Друзья</a></li>
+                    @*<li><a href="#"><i class="fa fa-send-o"></i>Send feedback</a></li>*@
+                </ul>
+                <ul class="menu-sidebar">
+                    <li><i class="fa fa-friends"></i><b> Создать сообщение</b></li>
+                    <li> @Html.ActionLink("Всем ", "AddDescription", new { a = 1, Id = 0 })</li>
+                    <li> @Html.ActionLink("Друзьям", "AddDescription", new { a = 2, Id = 0 })</li>
+                    <li> @Html.ActionLink("Приватное", "ListUserHome", new { a = 3, Id = 0 })</li>
+                    <li> @Html.ActionLink("Админ", "AddDescription", new { a = 4, Id = 1 })</li>
+
+
+
+                </ul>
+                <ul class="menu-sidebar">
+                    <li><a href="~/Home/Profil"><i class="fa fa-edit"></i>Профиль</a></li>
+                    <li><a href="~/Home/Seting"><i class="fa fa-gear"></i>Настройки</a></li>
+                    <li><a href="~/Home/Index"><i class="fa fa-sign-out"></i>Выход</a></li>
+                </ul>
+
+
+            </div><!-- // fa-friends sidebar-stick -->
+            <div class="clear"></div>
+        </div><!-- // left-sidebar -->
+    </div><!-- // col-md-2 -->
+
+    <div id="all-output" class="col-md-10">
+        
+        @{Html.RenderPartial("DescriptionView");}
+        
+        <!-- Loading More Videos -->
+        <div id="loading-more">
+            <i class="fa fa-refresh faa-spin animated"></i> <span>Loading more</span>
+        </div>
+        <!-- // Loading More Videos -->
+
+    </div>
+</div>
+
+@*<script src="~/Scripts/jquery-1.8.0.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>*@

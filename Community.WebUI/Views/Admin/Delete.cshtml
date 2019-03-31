@@ -1,0 +1,65 @@
+﻿
+@{
+    ViewBag.Title = "Delete";
+}
+@model Community.Domain.Entities.User
+<div class="row">
+    <div class="col-md-2 ">
+        <div class="site-output">
+            <div class="col-md-2 no-padding-left hidden-sm hidden-xs">
+                <div class="left-sidebar">
+                    <div id="sidebar-stick">
+
+                        <ul class="menu-sidebar">
+
+                            <li><a href="~/Admin/ListUser"><i class="fa fa-reply"></i>Вернуться</a></li>
+
+                            <li><a href="~/Admin/Index"><i class="fa fa-reply-all"></i>На главную</a></li>
+                            <li><a href="~/Home/Index"><i class="fa fa-sign-out"></i>Выход</a></li>
+                        </ul>
+
+                    </div><!-- // sidebar-stick -->
+                    <div class="clear"></div>
+                </div><!-- // left-sidebar -->
+            </div><!-- // col-md-2 style="width:50%"-->
+        </div>
+    </div>
+    <div class="col-md-10 ">
+        <h2 style="margin-left:30%">Пользователь</h2>
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th hidden="hidden">
+                        Id
+                    </th>
+                    <th>
+                        Имя
+                    </th>
+                    <th>
+                        Фамилия
+                    </th>
+                    <th>
+                        Отчество
+                    </th>
+                    <th>
+                        Email
+                    </th>
+                </tr>
+            </thead>
+            <tbody class="tbody">
+                <tr>
+                    <td hidden="hidden">@Model.Id</td>
+                    <td>@Model.Name</td>
+                    <td>@Model.FirstName</td>
+                    <td>@Model.Surname</td>
+                    <td>@Model.Email</td>
+                </tr>
+            </tbody>
+
+        </table>
+        @using (Html.BeginForm())
+        {
+            <p> Запись будет удалена продолжить?</p>
+            <input type="submit" value="Удалить" />
+        }
+        </div>

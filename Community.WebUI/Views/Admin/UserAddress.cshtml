@@ -1,0 +1,131 @@
+﻿@model Community.Domain.Entities.Address
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>
+        @{
+            /**/
+
+            ViewBag.Title = "Адрес";
+        }
+
+    </title>
+</head>
+<body>
+        <div class="row">
+        <div class="col-md-2">
+            <div class="site-output">
+                <div class="col-md-6 no-padding-left hidden-sm hidden-xs">
+                    <div class="left-sidebar">
+                        <div id="sidebar-stick">
+
+                            <ul class="menu-sidebar">
+                                <li><a href="~/Admin/Details/@ViewBag.userId"><i class="fa fa-reply "></i>Вернуться</a></li>
+
+                                <li><a href="~/Admin/Index"><i class="fa fa-sign-out"></i>Выход</a></li>
+                            </ul>
+
+                        </div><!-- // sidebar-stick -->
+                        <div class="clear"></div>@**@
+                    </div><!-- // left-sidebar -->
+                </div><!-- // col-md-2 -->
+            </div>
+        </div>
+        <div class="col-md-10">
+            <h2>Адрес  </h2>
+            <h2>@ViewBag.userName</h2>
+            @using (Html.BeginForm())
+            {
+                <div class="row">
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(model => model.IdAddress)
+                    @Html.HiddenFor(model => model.IdUser)
+
+                    <div class="col-md-8">
+                        <div class="col-md-4">
+                            <label>Страна</label>
+                        </div>
+                        @Html.EditorFor(x => x.Contry)
+                    </div>
+                    <div class="col-md-8">
+                        <div class="col-md-4">
+                            <label>Город</label>
+                        </div>
+                        @Html.EditorFor(x => x.City)
+                    </div>
+                    <div class="col-md-8">
+                        <div class="col-md-4">
+                            <label>Улица</label>
+                        </div>
+                        @Html.EditorFor(x => x.Street)
+                    </div>
+                    <div class="col-md-8">
+                        <div class="col-md-4">
+                            <label>Дом</label>
+                        </div>
+                        @Html.EditorFor(x => x.Hous)
+                    </div>
+                    <div class="col-md-8">
+                        <div class="col-md-4">
+                            <label>Квартира</label>
+                        </div>
+                        @Html.EditorFor(x => x.Apartment)
+                    </div>
+                    <div class="col-md-6">
+                        <button type="submit" class="btn btn-dm btn-info">Сохранить</button>
+                        @*@Html.ActionLink("Удалить", "Delete", new { id = Model.IdAddress })*@
+                    </div>
+                </div>
+           }
+             </div>
+        </div>
+</body>
+</html>
+@*<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Contry)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.City)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Street)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Hous)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Apartment)
+        </th>
+
+        <th></th>
+    </tr>
+
+
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => Model.Contry)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.City)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.Street)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.Hous)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.Apartment)
+            </td>
+            <td>
+                @Html.ActionLink("Редактирование", "Edit", new { id = Model.IdAddress }) |
+                @Html.ActionLink("Детально", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Удалить", "Delete", new { id = Model.IdAddress })|
+                @Html.ActionLink("адрес", "UserAddress", new { id = item.Id })
+                </td>
+                </tr>
+
+
+                </table>*@

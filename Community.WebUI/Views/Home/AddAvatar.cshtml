@@ -1,0 +1,14 @@
+﻿<html>
+<body>
+    @using (Html.BeginForm("AddAvatar", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+       
+                <input name="image" type="file" id="fileName"  accept=".jpg,.jpeg,.png" onchange="validateFileType()" />
+                <input type="submit"  class="btn btn-dm btn-info" value="Установить на аватар" />
+
+            }
+                
+        <script src="~/Scripts/myScript.js"></script>
+        
+    </body>
+</html>

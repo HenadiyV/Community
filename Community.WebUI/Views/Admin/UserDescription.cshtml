@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Community.Domain.Entities.DescriptionUser>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>
+        @{
+            ViewBag.Title = "Сообщения";
+        }
+    </title>
+</head>
+<body>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="site-output">
+                <div class="col-md-6 no-padding-left hidden-sm hidden-xs">
+                    <div class="left-sidebar">
+                        <div id="sidebar-stick">
+
+                            <ul class="menu-sidebar">
+                                <li><a href="~/Admin/Details/@ViewBag.userId"><i class="fa fa-reply"></i>Вернуться</a></li>
+
+                                <li><a href="~/Admin/Index"><i class="fa fa-sign-out"></i>Выход</a></li>
+                            </ul>
+
+                        </div><!-- // sidebar-stick -->
+                        <div class="clear"></div>@**@
+                    </div><!-- // left-sidebar -->
+                </div><!-- // col-md-2 -->
+            </div>
+        </div>
+        <div class="col-md-8">
+            <h2>Сообщения пользователя</h2>
+            <h2>@ViewBag.userName</h2>
+            @foreach (var des in Model)
+            {
+
+            <div class="col-sm-10">
+                @*<h1 class="new-video-title"><i class="fa fa-bolt"></i> @ViewBag.user.Name</h1>*@
+                <h2> @Html.ActionLink("Список получателей", "ListUserDescription", new { Id = @ViewBag.userId, IdDescription = des.IdDescription })</h2>
+               
+
+                <div class="video-item">
+                    <p>@des.NameFile</p>
+                    <div class="thumb">
+
+                        <img src="~/Files/User/@des.IdUser/upload/@des.NameFile" alt="" style="width:200px">
+
+                    </div>
+
+                    <div class="video-info">
+
+                        <p>@des.Description </p>
+                        @*<p>Lorem Ipsum is simply dummy text of the printing and</p>*@
+
+                        <p style="color:darkred">@des.Date</p>
+                    </div>
+                </div>
+            </div>
+
+            }
+        </div>
+        </div>
+</body>
+</html>

@@ -1,0 +1,326 @@
+﻿@model Community.Domain.Entities.User
+@{
+    ViewBag.Title = "Редактирование персональных данных";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    @*<link href="~/Content/Site.css" rel="stylesheet" type="text/css" />*@
+    @*<link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />*@
+    <!-- Bootstrap Core CSS-->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Owl Carousel Assets -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+    <!--Google Fonts-->
+   <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800|Raleway:400,500,700|Roboto:300,400,500,700,900|Ubuntu:300,300i,400,400i,500,500i,700" rel="stylesheet">
+    <!-- Main CSS -->
+    @*<link rel="stylesheet" href="~/Content/style.css" />*@
+    <!-- Responsive CSS -->
+   <link rel="stylesheet" href="~/Content/responsive.css" />
+        <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    @* <script src="~/Scripts/jquery.js"></script>*@
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="//ajax.aspnetcdn.com/ajax/jquery.ui/1.10.3/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.10.3/themes/sunny/jquery-ui.css">
+    <style type="text/css">
+        input {
+            width: 200px;
+            text-align: left
+        }
+    </style>
+    @*<script type="text/javascript">
+        $(function () {
+
+            $('#datep').datepicker();
+
+        });
+    </script>*@
+</head>
+<body>
+    <div class="row">
+        <div class="col-md-2">
+            <div class="site-output">
+                <div class="col-md-2 no-padding-left hidden-sm hidden-xs">
+                    <div class="left-sidebar">
+                        <div id="sidebar-stick">
+                            @*<b> Создать сообщение</b>
+                                <ul class="menu-sidebar">
+                                    <li> @Html.ActionLink("Всем ", "AddDescription", new { a = 1, Id = 0 })</li>
+                                    <li> @Html.ActionLink("Друзьям", "AddDescription", new { a = 2, Id = 0 })</li>
+                                    <li> @Html.ActionLink("Приватное", "ListUserHome", new { a = 3, Id = 0 })</li>
+                                    <li> @Html.ActionLink("Админ", "AddDescription", new { a = 4, Id = 1 })</li>
+
+
+
+                                </ul>*@
+                            <ul class="menu-sidebar">
+                                <li><a href="~/Admin/Details/@ViewBag.userId"><i class="fa fa-reply"></i>Вернуться</a></li>
+                                <li><a href="~/Admin/ListUser"><i class="fa fa-reply-all"></i>К списку пользователей</a></li>@**@
+                                <li><a href="~/Admin/Index"><i class="fa fa-reply fa-reply-all"></i> На главную</a></li>
+                                <li><a href="~/Home/Index"><i class="fa fa-sign-out"></i> Выход </a></li>
+                            </ul>
+                            @*<ul class="menu-sidebar">
+                                    <li><a href="~/Home/PageUser"><i class="fa fa-home"></i>Home</a></li>
+                                    <li><a href="#"><i class="fa fa-bolt"></i>Trending</a></li>
+                                    <li><a href="14-history.html"><i class="fa fa-clock-o"></i>History</a></li>
+                                    <li><a href="11-blog.html"><i class="fa fa-file-text"></i>blog</a></li>
+                                    <li><a href="10-upload.html"><i class="fa fa-upload"></i>upload</a></li>
+                                </ul>*@
+                            @*<ul class="menu-sidebar">
+
+                                    <li><a href="#"><i class="fa fa-question-circle"></i>Help</a></li>
+                                    <li><a href="#"><i class="fa fa-send-o"></i>Send feedback</a></li>
+                                </ul>*@
+                        </div><!-- // sidebar-stick -->
+                        <div class="clear"></div>@**@
+                    </div><!-- // left-sidebar -->
+                </div><!-- // col-md-2 -->
+            </div>
+        </div>
+        <div class="col-md-10">
+            <h2>Редактирование личных данных пользователя</h2>
+           
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                
+                   
+            <div class="row">
+                @Html.HiddenFor(model => model.Id)
+                @*@Html.HiddenFor(model => model.RoleId)*@
+                @Html.HiddenFor(model => model.Password)
+                @*@Html.HiddenFor(model => model.UserSeting.Id)
+        @Html.HiddenFor(model => model.UserSeting.IdUser)
+        @Html.HiddenFor(model => model.UserAddress.IdAddress)
+        @Html.HiddenFor(model => model.UserAddress.IdUser)*@
+                <div class="col-md-8">
+
+                    <div class="col-md-4">
+
+                        <label> Фамилия</label>
+                    </div>
+                    @Html.EditorFor(x => x.Name)
+                </div>
+
+                <div class="col-md-8">
+                    <div class="col-md-4">
+                        <label>Имя</label>
+                    </div>
+                    @Html.EditorFor(x => x.FirstName)
+                </div>
+
+                <div class="col-md-8">
+                    <div class="col-md-4">
+                        <label> Отчество</label>
+                    </div>
+                    @Html.EditorFor(x => x.Surname)
+                </div>
+
+                <div class="col-md-8">
+
+                    <div class="col-md-3">
+                        <label> Дата рождения </label>
+
+                    </div>
+                    <div class="col-md-9">
+                        
+                        <span style="margin-left:9%"> @Html.TextBoxFor(x => x.BirthDay, new { type = "date" }) </span>
+                    </div>
+                </div>
+                    @*<div class="row">
+
+        <div class="col-md-6">
+            @Html.DisplayFor(x => x.BirthDay)
+
+        </div>*@
+                    
+
+                    @*</div>*@
+                    @*@Html.EditorFor(x => x.User.BirthDay,new {type="date" })*@
+
+                
+
+                @*<form>
+            <div class="ui-widget">
+                <label for="datep">Дата: </label><input id="datep" />
+            </div>
+        </form>*@
+                <div class="col-md-8">
+                    <div class="col-md-4">
+                        <label> Email</label>
+                    </div>
+                    @Html.EditorFor(x => x.Email)
+                </div>
+
+                <div class="col-md-8">
+                    <div class="col-md-4">
+                        <label> Телефон</label>
+                    </div>
+                    @Html.EditorFor(x => x.Phone)
+                </div>
+                <div class="col-md-8">
+                    <div class="col-md-4">
+                        <label> Уровень доступа</label>
+                    </div>
+                    @Html.DropDownListFor(x => x.RoleId, new SelectList(ViewBag.roly, "IdRole", "NameRole")) @**@
+                </div>
+                <div class="col-md-8">
+
+                    <div class="col-md-4">
+                        <h3> Пол</h3>
+                    </div>
+                    @Html.DropDownListFor(x => x.GenderId, new SelectList(ViewBag.gender, "Id", "Gender"))@**@
+                </div>
+                @*<div class="row">new SelectList(Model.Categories, "Id", "Name"),
+           string.Empty
+            
+            <div class="col-md-8">
+
+                <div class="col-md-4">
+                    <label> Страна </label>
+                </div>
+                @Html.EditorFor(x => x.UserAddress.Contry)
+            </div>
+
+            <div class="col-md-8">
+                <div class="col-md-4">
+                    <label>Город</label>
+                </div>
+                @Html.EditorFor(x => x.UserAddress.City)
+            </div>
+
+            <div class="col-md-8">
+                <div class="col-md-4">
+                    <label>Улица</label>
+                </div>
+                @Html.EditorFor(x => x.UserAddress.Street)
+            </div>
+
+            <div class="col-md-8">
+                <div class="col-md-4">
+                    <label>Дом</label>
+                </div>
+                @Html.EditorFor(x => x.UserAddress.Hous)
+            </div>
+
+            <div class="col-md-8">
+                <div class="col-md-4">
+                    <label>Квартира</label>
+                </div>
+                @Html.EditorFor(x => x.UserAddress.Apartment)
+            </div>
+        </div>*@
+
+                @*<div class="row">
+            <div class="col-md-8">
+
+                <div class="col-md-12">
+                    <h3> Отображение информации о пользователе</h3>
+                </div>
+
+            </div>
+            <div class="col-md-8">
+
+                <div class="col-md-4">
+                    <label>Показывать адрес </label>
+                </div>
+                @Html.CheckBoxFor(x => x.UserSeting.Address)
+            </div>
+            <div class="col-md-8">
+                <div class="col-md-4">
+                    <label>Показывать возраст</label>
+                </div>
+                @Html.CheckBoxFor(x => x.UserSeting.Age)
+            </div>
+
+            <div class="col-md-8">
+                <div class="col-md-4">
+                    <label>Показывать email</label>
+                </div>
+                @Html.CheckBoxFor(x => x.UserSeting.Email)
+            </div>
+
+            <div class="col-md-8">
+                <div class="col-md-4">  <label>Номер телефона</label></div>
+                @Html.CheckBoxFor(x => x.UserSeting.Phone)
+            </div>
+
+            <div class="col-md-8">
+                <div class="col-md-4">
+                    <label>Показывать фамилию</label>
+                </div>
+                @Html.CheckBoxFor(x => x.UserSeting.Surname)
+            </div>
+        </div>*@
+            </div>
+                <div class="col-md-6">
+                    <button type="submit" class="btn btn-dm btn-info">Сохранить</button>
+                </div>
+
+
+            }
+        </div>
+    </div>
+    @*@section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+        <link href='@Url.Content("~/Content/themes/base/all.css")' rel="stylesheet" type="text/css" />
+        <script src='@Url.Content("~/Scripts/jquery-ui-1.11.4.min.js")' type="text/javascript"></script>
+        <script type="text/javascript">
+            $(function () {
+                $("input[type='date']")
+                    .datepicker({ dateFormat: 'dd/mm/yy' })
+                    .get(0).setAttribute("type", "text");
+                $.datepicker.regional['ru'] = {
+                    prevText: 'Пред',
+                    nextText: 'След',
+                    monthNames: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь',
+                        'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
+                    monthNamesShort: ['Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн',
+                        'Июл', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек'],
+                    dayNames: ['воскресенье', 'понедельник', 'вторник', 'среда', 'четверг', 'пятница', 'суббота'],
+                    dayNamesShort: ['вск', 'пнд', 'втр', 'срд', 'чтв', 'птн', 'сбт'],
+                    dayNamesMin: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
+                    weekHeader: 'Не',
+                    dateFormat: 'dd/mm/yy',
+                    firstDay: 1,
+                    isRTL: false,
+                    showMonthAfterYear: false,
+                    yearSuffix: ''
+                };
+                $.datepicker.setDefaults($.datepicker.regional['ru']);
+                $.validator.addMethod('date',
+                    function (value, element) {
+                        var ok = true;
+                        try {
+                            $.datepicker.parseDate('dd/mm/yy', value);
+                        }
+                        catch (err) {
+                            ok = false;
+                        }
+                        return ok;
+                    });
+            });
+        </script>}*@
+
+    @*<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script src="//ajax.aspnetcdn.com/ajax/jquery.ui/1.10.3/jquery-ui.min.js"></script>
+        <link rel="stylesheet" href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.10.3/themes/sunny/jquery-ui.css">
+        <script>
+            $(function () {
+                $('.datepicker').datepicker({
+                    changeMonth: true,
+                    changeYear: true
+                });
+
+            });
+        </script>*@
+    @*<script src="~/Scripts/myDate.js"></script>*@
+</body>
+</html>

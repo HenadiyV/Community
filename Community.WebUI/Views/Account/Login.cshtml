@@ -1,0 +1,93 @@
+﻿@model Community.Domain.ViewModel.LoginModel
+@{
+    Layout = null;
+}
+@*@{
+    ViewBag.Title = "Login";
+}
+
+<h2>Login</h2>*@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Community</title>
+    <meta name="keywords" content="Blog website templates" />
+    <meta name="description" content="Author - Personal Blog Wordpress Template">
+    <meta name="author" content="Rabie Elkheir">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap Core CSS -->
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet">
+    <!-- Owl Carousel Assets -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+    <!--Google Fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800|Raleway:400,500,700|Roboto:300,400,500,700,900|Ubuntu:300,300i,400,400i,500,500i,700" rel="stylesheet">
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="~/Content/style.css" />
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="~/Content/responsive.css" />
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style>
+        .brek {
+            width: 90%;
+            margin-left: 5%;
+        }
+        .brekl {
+            margin-left: 30%;
+        }
+    </style>
+</head>
+
+<body class="log_in_page">
+    <!--======= log_in_page =======-->
+    <div id="log-in" class="site-form log-in-form">
+        <div id="log-in-head">
+            <h1>Вход</h1>
+            <div id="logo">
+                <img src="~/img/community.png" style="width:10%" alt="">
+            </div>
+    </div>
+    @using (Html.BeginForm())
+    {
+
+
+        @Html.AntiForgeryToken()
+        <div>
+
+            @Html.ValidationSummary()
+            <input type="hidden" name="returnUrl" value="@ViewBag.returnUrl" />
+            <label class="brekl control-label">Ваш Email</label>
+            <div class="brek">
+                @Html.TextBoxFor(x => x.Email, new { @class = "brek" })<br />
+            </div>
+            <label class="brekl control-label">Пароль</label>
+            <div class="brek">
+                @Html.PasswordFor(x => x.Password, new { @class = "brek" })<br />
+            </div>
+            <div class=" col-md-12">
+                <input type="submit" class="btn btn-lg btn-primary full-width btn-icon-left" value="Войти" />
+
+            </div>
+        </div>
+
+    }
+    <div class="or"></div>
+
+   
+    <h4>Вы еще не зарегстрированны? <a href="~/Account/Register"><b>Регистрация!</b></a> </h4>
+    </div>
+   
+    <!--======= // log_in_page =======-->
+</body>
+   
+</html>

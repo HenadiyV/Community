@@ -1,0 +1,76 @@
+﻿@model IEnumerable<Community.Domain.ViewModel.MyFrend>
+
+@{
+    ViewBag.Title = "Имениники";
+}
+
+<div class="row">
+    <div class="col-md-2 ">
+        <div class="site-output">
+            <div class="col-md-2 no-padding-left hidden-sm hidden-xs">
+                <div class="left-sidebar">
+                    <div id="sidebar-stick">
+                        <ul class="menu-sidebar">
+                            <li><a href="~/Home/PageUser"><i class="fa fa-reply"></i>Вернуться</a></li>
+                            <li><a href="~/Home/Index"><i class="fa fa-sign-out"></i>Выход</a></li>
+                        </ul>
+
+                    </div><!-- // sidebar-stick -->
+                    <div class="clear"></div>
+                </div><!-- // left-sidebar -->
+            </div><!-- // col-md-2 style="width:50%"-->
+        </div>
+    </div>
+    <div class="col-md-10 ">
+
+
+        @foreach (var p in Model)
+        {
+            <br />
+            <div class="col-md-10" style="border:outset 2px ">
+                <div class="row">
+
+
+                    <div class="col-md-4">
+
+                        <img src="~/Files/User/@p.User.Id/avatar/@p.UserSeting.Avatar" alt="" style="width:150px" />
+
+                    </div>
+                    <div class="col-md-8">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <br />
+                                <div class="title"><h2>@p.User.Name</h2></div>
+                                <h2>@p.User.FirstName</h2>
+                                @if (p.UserSeting.Surname)
+                                {<h2>@p.User.Surname</h2>}
+                                @if (p.UserSeting.Email)
+                                {<h2>@p.User.Email</h2>}
+
+                            </div>
+                            <div class="col-md-6">
+                                <br />
+                                @using (Html.BeginForm("AddDescription", "Home", FormMethod.Get))
+                                {
+                                    <div>
+
+                                        <input type="text" hidden="hidden" name="a" value="3" />@**@
+                                        <input type="text" hidden="hidden" name="Id" value="@p.User.Id" />
+                                        <button type="submit" class="mySumbit">Написать сообщение</button>
+                                    </div>
+                                }
+                            </div>
+
+                        </div>
+                        <h3> День рождения:<span style="color:orangered">@p.countDayMessage</span></h3>
+                    </div>
+
+                </div>
+            </div>
+
+
+        }
+
+    </div>
+
+</div>

@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Community.Domain.ViewModel.SearchUserResult>
+@{
+    ViewBag.Title = "RemoveFrend";
+}
+<html>
+<body>
+    <div class="row">
+        <div class="col-md-4 ">
+            <div class="site-output">
+                <div class="col-md-2 no-padding-left hidden-sm hidden-xs">
+                    <div class="left-sidebar">
+                        <div id="sidebar-stick">
+
+                            <ul class="menu-sidebar">
+
+                                <li><a href="~/Home/PageUser"><i class="fa fa-home"></i>Вернуться</a></li>
+
+
+                                <li><a href="~/Home/Index"><i class="fa fa-sign-out"></i>Выход</a></li>
+                            </ul>
+
+                        </div><!-- // sidebar-stick -->
+                        <div class="clear"></div>
+                    </div><!-- // left-sidebar -->
+                </div><!-- // col-md-2 style="width:50%"-->
+            </div>
+        </div>
+        <div class="col-md-8 ">
+            @if (Model != null){
+                foreach (var p in Model)
+                {
+                    <div class="col-md-10">
+                        <div class="col-md-4">
+
+                            <img src="~/Files/User/@p.User.Id/avatar/@p.UserSeting.Avatar" alt="" style="width:150px" />
+
+                        </div>
+                        <div class="title"><h2>@p.User.Name</h2></div>
+                        <h2>@p.User.FirstName</h2>
+                        @if (p.UserSeting.Surname)
+                        {<h2>@p.User.Surname</h2>}
+                        @if (p.UserSeting.Email)
+                        {<h2>@p.User.Email</h2>}
+                        <span>@Html.ActionLink("Написать сообщение", "AddDescription", new { a = 3, Id = p.User.Id })</span>
+
+                        <span style=" margin-left:3%;">@Html.ActionLink("Удалить из друзей", "FrendRemove", new { Id = p.User.Id })</span>
+
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,124 @@
+﻿@model Community.Domain.Entities.UserSeting
+
+
+
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    @{
+        ViewBag.Title = "Запрет публикаций";
+    }
+   
+    <meta name="keywords" content="Blog website templates" />
+    <meta name="description" content="Author - Personal Blog Wordpress Template">
+    <meta name="author" content="Rabie Elkheir">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap Core CSS -->
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet">
+    <!-- Owl Carousel Assets -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+    <!--Google Fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800|Raleway:400,500,700|Roboto:300,400,500,700,900|Ubuntu:300,300i,400,400i,500,500i,700" rel="stylesheet">
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="~/Content/style.css" />
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="~/Content/responsive.css" />
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<html>
+<body>
+
+    <div class="site-output">
+        <div class="col-md-2 no-padding-left hidden-sm hidden-xs">
+            <div class="left-sidebar">
+                <div id="sidebar-stick">
+
+                    <ul class="menu-sidebar">
+                        <li><a href="~/Admin/ListUser"><i class="fa fa-reply"></i>Вернуться</a></li>
+                        <li><a href="~/Admin/Index"><i class="fa fa-reply-all"></i>На главную</a></li>
+                        <li><a href="~/Home/Index"><i class="fa fa-sign-out"></i>Выход</a></li>
+                    </ul>
+
+                </div><!-- // sidebar-stick -->
+                <div class="clear"></div>
+            </div><!-- // left-sidebar -->
+        </div><!-- // col-md-2 style="width:50%"-->
+        <div id="all-output" class="col-md-10 upload">
+            <div class="col-md-12">
+                <img src="~/Files/User/@Model.IdUser/avatar/@Model.Avatar" alt="" style="width:200px" />
+            </div>
+            @*@{Html.RenderPartial("AddAvatar");}*@
+            <br />
+            <br />
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(model => model.Id)
+                @Html.HiddenFor(model => model.IdUser)
+                @*@Html.HiddenFor(model => model.Post)
+                @Html.HiddenFor(model => model.UploadFile)*@
+                @Html.HiddenFor(model => model.GreateGroup)
+                @Html.HiddenFor(model => model.Avatar)
+                <div class="row">
+
+                    <h3>Опции публикаций пользователя </h3>
+                    <h2>@ViewBag.user</h2>
+                    <div class="col-md-8">
+                        <div class="col-md-4">
+                            <label>Разрешить  </label>
+                        </div>
+                        @Html.CheckBoxFor(x => x.AdminSeting)
+                    </div>
+                    <div class="col-md-8">
+                        <div class="col-md-4">
+                            <label>Разрешить создание сообщений</label>
+                        </div>
+                        @Html.CheckBoxFor(x => x.Post)
+                    </div>
+
+                    <div class="col-md-8">
+                        <div class="col-md-4">
+                            <label>Разрешить приклеплять файл к сообщению</label>
+                        </div>
+                        @Html.CheckBoxFor(x => x.UploadFile)
+                    </div>
+
+                    @*<div class="col-md-8">
+                        <div class="col-md-4">  <label>Номер телефона</label></div>
+                        @Html.CheckBoxFor(x => x.Phone)
+                    </div>
+
+                    <div class="col-md-8">
+                        <div class="col-md-4">
+                            <label>Показывать фамилию</label>
+                        </div>
+                        @Html.CheckBoxFor(x => x.Surname)
+                    </div>*@
+                </div>
+                <div class="col-md-6">
+                    <button type="submit" class="btn btn-dm btn-info">Сохранить </button>
+                </div>
+
+            }
+        </div>
+    </div>
+    @*<script src="~/Scripts/jquery-3.2.1.min.js"></script>
+    <script src="~/Scripts/jquery.sticky-kit.min.js"></script>
+    <script src="~/Scripts/custom.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/imagesloaded.pkgd.min.js"></script>
+    <script src="~/Scripts/grid-blog.min.js"></script>*@
+
+</body>
+
+</html>

@@ -1,0 +1,235 @@
+﻿
+    <style>
+        .myPos{
+            margin-top:10%;
+            /*margin-left:-10%;*/
+        }
+    </style>
+
+    <div class="row">
+        <div class="col-md-4 ">
+            <div class="site-output">
+                <div class="col-md-2 no-padding-left hidden-sm hidden-xs">
+                    <div class="left-sidebar">
+                        <div id="sidebar-stick">
+
+                            <ul class="menu-sidebar">
+                                @*<li><a href="~/Home/Search"><i class="fa fa-search"></i>Поиск</a></li>*@
+                                <li><a href="~/Home/PageUser"><i class="fa fa-reply"></i>Вернуться</a></li>
+                                @*<li><a href="~/Home/AddFrend"><i class="fa fa-edit"></i>Добавить в друзья</a></li>
+        <li><a href="~/Home/FrendRemove"><i class="fa fa-gear"></i>Удалить из друзей</a></li>*@
+                                <li><a href="~/Home/Index"><i class="fa fa-sign-out"></i>Выход</a></li>
+                            </ul>
+
+                        </div><!-- // sidebar-stick -->
+                        <div class="clear"></div>
+                    </div><!-- // left-sidebar -->
+                </div><!-- // col-md-2 style="width:50%"-->
+            </div>
+        </div>
+        <div class="col-md-8 myPos" >
+            <div class="row">
+                @{
+                    ViewBag.Title = "Данные пользователей";
+                    AjaxOptions ajaxOptions = new AjaxOptions
+                    {
+                        UpdateTargetId = "tableBody",
+                        Url = Url.Action("SearchUser"),
+                        LoadingElementId = "loading",
+                        LoadingElementDuration = 1000,
+                    };
+                }
+                <div class="col-md-8">
+                    <div class="col-md-4">
+                        <label>Поиск по городу</label>
+                    </div>
+                    @using (Html.BeginForm("SearchUser", "Home", FormMethod.Post))
+                    {
+                        <div>
+                            @Html.DropDownList("City", ViewBag.city as SelectList)
+                            <input type="text" hidden="hidden" name="act" value="1" />
+                            <button type="submit">поиск</button>
+                        </div>
+                    }
+                   @*@using (Ajax.BeginForm("SearchUser", new AjaxOptions { UpdateTargetId = "results" }))
+                    {
+                        <div>
+                            @Html.DropDownList("City", ViewBag.city as SelectList, new { @name = "name" })
+                            <input type="text" hidden="hidden" name="act" value="1" />
+                            <button type="submit">поиск</button>
+                        </div>
+
+                    }*@
+
+
+                </div>
+
+                <div class="col-md-8">
+                    <div class="col-md-4">
+                        <label>Поиск по имени</label>
+                    </div>
+                    @using (Html.BeginForm("SearchUser", "Home", FormMethod.Post))
+                    {
+                    <div>
+                        <input type="text" hidden="hidden" name="act" value="2" />@**@
+
+                        <input type="text" name="name" />
+                        <button type="submit">поиск</button>
+                    </div>
+                    }
+                    @*@using (Ajax.BeginForm(ajaxOptions))
+        {
+            <input type="number" hidden="hidden" name="act" value="2" />
+            <input type="text" name="name" />
+            <input type="submit" value="Поиск" />
+        }*@
+                </div>
+                <div class="col-md-8">
+                    <div class="col-md-4">
+                        <label>Поиск по отчеству </label>
+                    </div>
+                    @using (Html.BeginForm("SearchUser", "Home", FormMethod.Post))
+                    {
+                        <div>
+                            <input type="text" hidden="hidden" name="act" value="3" />@**@
+
+                            <input type="text" name="firstname" />
+                            <button type="submit">поиск</button>
+                        </div>
+                    }
+                    @*@using (Ajax.BeginForm("SearchUser", new AjaxOptions { UpdateTargetId = "results" }))
+        {
+            <input type="number" hidden="hidden" name="act" value="3" />
+            <input type="text" name="firstname" />
+            <input type="submit" value="Поиск" />
+        }*@
+                </div>
+                <div class="col-md-8">
+                    <div class="col-md-4">
+                        <label>Поиск по фамилии </label>
+                    </div>
+                    @using (Html.BeginForm("SearchUser", "Home", FormMethod.Post))
+                    {
+                        <div>
+                            <input type="text" hidden="hidden" name="act" value="4" />@**@
+
+                            <input type="text" name="surname" />
+                            <button type="submit">поиск</button>
+                        </div>
+                    }
+                    @*@using (Ajax.BeginForm("SearchUser", new AjaxOptions { UpdateTargetId = "results" }))
+        {
+            <input type="number" hidden="hidden" name="act" value="4" />
+            <input type="text" name="surname" />
+            <input type="submit" value="Поиск" />
+        }*@
+                </div>
+                <div class="col-md-8">
+                    <div class="col-md-4">
+                        <label>Поиск по полу </label>
+                    </div>
+                    @using (Html.BeginForm("SearchUser", "Home", FormMethod.Post))
+                    {
+                    <div>
+                        <input type="text" hidden="hidden" name="act" value="5" />@**@
+
+                        @* @Html.DropDownList("Gender", new SelectList(ViewBag.gander, "Id", "Gender"))*@
+                        @Html.DropDownList("gender", ViewBag.gander as SelectList)
+                        <button type="submit">поиск</button>
+                    </div>
+                    }
+                    @*@using (Ajax.BeginForm("SearchUser", new AjaxOptions { UpdateTargetId = "results" }))
+        {
+            @Html.DropDownList("gender", ViewBag.gander as SelectList)
+            <input type="number" hidden="hidden" name="act" value="5" />
+
+            <input type="submit" value="Поиск" />
+        }*@
+                </div>
+                <div class="col-md-8">
+                    <div class="col-md-4">
+                        <label>Поиск по возрасту </label>
+                    </div>
+                    @using (Html.BeginForm("SearchUser", "Home", FormMethod.Post))
+                    {
+                    <div>
+                        <span style="margin-left:5%"> @Html.DropDownList("Data", ViewBag.listData as SelectList)</span>
+                        <input type="text" hidden="hidden" name="act" value="6" />@**@
+                        @*
+
+
+                       <span> до</span>
+        @Html.DropDownList("Data", ViewBag.listData as SelectList, new { @name = "stop" })*@
+                        <button type="submit">поиск</button>
+                    </div>
+                    }
+                    @*@using (Ajax.BeginForm("SearchUserAge", new AjaxOptions { UpdateTargetId = "results" }))
+        {
+            <input type="number" hidden="hidden" name="act" value="6" />
+            <span style="margin-left:14%"> От</span>
+
+            @Html.DropDownList("Data", ViewBag.listData as SelectList, new { @name = "start" })
+            <span> до</span>
+            @Html.DropDownList("Data", ViewBag.listData as SelectList, new { @name = "stop" })
+
+            <input type="submit" value="Поиск" />
+        }*@
+                </div>
+
+                <div id="results"></div>
+            </div>
+
+
+            <div class="col-md-8">
+
+                <div>
+                    @*@{
+                        ViewBag.Title = "Данные пользователей";
+                        AjaxOptions ajaxOptions = new AjaxOptions
+                        {
+                            UpdateTargetId = "tableBody",
+                            Url = Url.Action("AddFrend"),
+                            LoadingElementId = "loading",
+                            LoadingElementDuration = 1000,
+                        };
+                    }*@
+
+                    @*@Scripts.Render("~/scripts/jquery-1.10.2.min.js")
+                    @Scripts.Render("~/scripts/jquery.unobtrusive-ajax.min.js")*@
+                    @*<div id="searchresults">
+                    @foreach (var p in Model)
+                    {
+                        <div class="video-item">
+
+                            <div class="col-md-10">
+                                @ViewBag.mess
+                                <div class="title"><p>@p.Name</p></div>
+                                <p>@p.FirstName</p>
+                                <h2>@p.Email</h2>
+
+                                @using (Ajax.BeginForm(ajaxOptions))
+                                {
+                                    <div>
+
+                                        <input type="number" hidden="hidden" name="Id_user" value="@p.Id" /><br />
+                                        <button type="submit">Добавить в друзья</button>
+                                    </div>
+                                }
+                                <div id="tableBody"></div>
+                            </div>
+
+                        </div>
+
+                    }
+                            </div>*@
+                    @*<div id="loading" class="load" style="display: none">
+                        <p>Loading Data...</p>
+                    </div>*@
+
+                </div>
+            </div>
+        </div>
+</div>
+       
+        <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>@**@
+

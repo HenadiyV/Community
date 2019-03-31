@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "Ограничение на создание сообщений";
+}
+
+<div class="row">
+    <div class="col-md-3 ">
+        <div class="site-output">
+            <div class="col-md-2 no-padding-left hidden-sm hidden-xs">
+                <div class="left-sidebar">
+                    <div id="sidebar-stick">
+
+                        <ul class="menu-sidebar">
+
+                            <li><a href="~/Home/PageUser"><i class="fa fa-reply"></i>Вернуться</a></li>
+
+                            <li><a href="~/Home/Index"><i class="fa fa-sign-out"></i>Выход</a></li>
+                        </ul>
+
+                    </div><!-- // sidebar-stick -->
+                    <div class="clear"></div>
+                </div><!-- // left-sidebar -->
+            </div><!-- // col-md-2 style="width:50%"-->
+        </div>
+    </div>
+    <div class="col-md-9 " style="margin-top:10%">
+        <div class="col-md-12 ">
+            <h3> @ViewBag.Descript</h3>
+        </div>
+            <div class="col-md-12 ">
+                <h3> @ViewBag.message</h3>
+            </div>
+        @if (ViewBag.profil) { 
+            <div class="col-md-12 ">
+                <h3> @Html.ActionLink("Закончить регистрацию", "Profil")</h3>
+               
+            </div>
+        }
+        </div>
+</div>

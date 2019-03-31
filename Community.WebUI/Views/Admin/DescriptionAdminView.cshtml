@@ -1,0 +1,70 @@
+﻿@model IEnumerable<Community.Domain.ViewModel.Coments>
+
+@*@if (Model != null) { }*@
+@foreach (var des in Model)
+{
+    @*<div class="paginationBody">
+        <h1 class="new-video-title"><i class="fa fa-bolt"></i> @des.NameUser</h1>*@
+    <div class="row">
+        @if (!des.ReadUser)
+        {
+            <h2 class="col-sm-2 new-video-title"><i style="color:red" class="fa fa-bolt"></i> @des.NameUser </h2>}
+        else
+        {<h2 class="col-sm-2 new-video-title"> @des.NameUser</h2>}
+
+
+        <p class="col-sm-10" onclick="view(@des.IdDescription )">
+
+            <b style="color:darkblue">Просмотр</b>
+        </p>
+    </div>
+    <div id=@des.IdDescription style="display: none;">
+        <div class="row">
+            <div class="col-sm-12">
+                <br />
+
+
+                <div class="video-item">
+                    <div class="thumb"></div><div class="video-info">
+                        @*<div class="hover-efect"></div>*@
+                        @if (des.NameFile != "")
+                        {
+                            <img src="~/Files/User/@des.IdUser/upload/@des.NameFile" alt="" style="width:200px">
+                        }
+
+
+
+
+                        <p> @des.Description</p>
+                        <p style="color:darkred">@des.Date</p>
+
+                    </div>
+                </div>
+
+                <button onclick="myId(@des.IdUser,@des.IdDescription)" type="button">Отметить как : Прочитанно</button>
+            </div>
+        </div>
+        </div>
+        @*</div>*@
+        }
+        <script>
+            function view(n) {
+                style = document.getElementById(n).style;
+                style.display = (style.display == 'block') ? 'none' : 'block';
+
+            }
+            function myId(IdUser, IdDescript) {
+                var testData = { 'idUs': IdUser, 'IdDescript': IdDescript };
+                $.ajax({
+                    type: "POST",
+                    url: "/Admin/AjaxReadDescript",
+                    data: JSON.stringify(testData),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (data) {
+                        alert("Отмеченно.");
+                    }
+
+                });
+            }
+        </script>

@@ -1,0 +1,64 @@
+﻿@model Community.Domain.Entities.User
+
+
+
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="site-output">
+            <div class="col-md-6 no-padding-left hidden-sm hidden-xs">
+                <div class="left-sidebar">
+                    <div id="sidebar-stick">
+                        <ul class="menu-sidebar">
+                            <li><i class="fa fa-edit"></i> @Html.ActionLink("Редактировать личные данные", "Edit", new { Id = Model.Id })</li>
+
+                            <li><i class="fa fa-address-book-o"></i> @Html.ActionLink("Редактировать адрес", "UserAddress", new { Id = Model.Id })</li>
+                            <li><i class="fa fa-comment-o"></i>  @Html.ActionLink("Публикации", "UserDescription", new { Id = Model.Id })</li>@**@
+                            <li><i class="fa fa-cog"></i>            @Html.ActionLink("Настройки профиля", "UserSeting", new { Id = Model.Id })</li>@**@
+                        </ul>
+                        <ul class="menu-sidebar">
+                            <li><a href="~/Admin/ListUser"><i class="fa fa-reply"></i>Вернуться</a></li>
+
+                            <li><a href="~/Admin/Index"><i class="fa fa-sign-out"></i>Выход</a></li>
+                        </ul>
+
+                    </div><!-- // sidebar-stick -->
+                    <div class="clear"></div>
+                </div><!-- // left-sidebar -->
+            </div><!-- // col-md-2 -->
+        </div>
+    </div>
+    <h2>Пользователь</h2>
+    <div class="col-md-8" style="border:outset 2px;width:50%; ">
+
+        <div class="row">
+
+            <div class="col-md-4">
+
+                <img src="~/Files/User/@Model.Id/avatar/@ViewBag.avatar" alt="" style="width:150px" />
+
+            </div>
+            <div class="col-md-8">
+
+                <div class="col-md-12">
+                    <br />
+                    <div class="title">
+                    <h2>@Model.Name</h2></div>
+                    <h2>@Model.FirstName</h2>
+
+                    <h2>@Model.Surname</h2>
+
+                    <h2>@Model.Email</h2>
+                </div>
+
+
+            </div>
+        </div>
+        @*style=" margin-left:3%;"<span style=" margin-left:3%;">@Html.ActionLink("Добавить в друзья", "AddFrend", new { Id = p.User.Id })</span>*@
+
+    </div>
+
+
+</div>
+
+

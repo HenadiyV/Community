@@ -1,0 +1,63 @@
+﻿@model Community.Domain.Entities.DescriptionUser
+
+    <div class="site-output">
+        <div class="col-md-2 no-padding-left hidden-sm hidden-xs">
+            <div class="left-sidebar">
+                <div id="sidebar-stick">
+
+
+                    <ul class="menu-sidebar">
+                        <li><a href="~/Home/PageUser"><i class="fa fa-reply"></i>Вернуться</a></li>
+
+                        <li><a href="~/Home/Index"><i class="fa fa-sign-out"></i>Выход</a></li>
+                    </ul>
+
+                </div><!-- // sidebar-stick -->
+                <div class="clear"></div>
+            </div><!-- // left-sidebar -->
+        </div><!-- // col-md-2 style="width:50%""AddDescription", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }-->
+    </div>
+
+    <div id="all-output" class="col-md-10">
+
+
+        @using (Html.BeginForm())
+        {
+
+            <!-- upload -->
+            @Html.HiddenFor(model => model.IdUser)
+
+            <div class="col-md-12">
+                <h1 class="page-title"><span style="color:indianred">Создать сообщение</span> </h1>
+
+
+
+                <div class="col-md-12">
+
+                    <label>Введите текст сообщения </label>
+                    <textarea class="form-control" name="textBoxName" rows="4" placeholder="Сообщение"></textarea>
+                    <input type="submit" value="Отправить" />
+                    
+                </div>
+
+                
+                
+
+
+            </div><!-- id="contact_submit"// col-md-8 -->
+            
+
+        }    <!-- // upload -->
+
+            
+            <form id="uploader" style="margin-left:3%;">
+                <input id="fileInput" type="file" multiple accept=".jpg,.jpeg,.png" onchange="validateFileType()">
+                <input type="submit" value="Прикрепить файл к сообщению" />
+                @*<button type="submit">Прикрепить файл к сообщению</button>*@
+            </form>
+
+
+            <!--<div id="upload"> </div>if (ViewBag.upload) {} // row -->
+        </div><!-- // upload -->
+
+        <script src="~/Scripts/myScript.js"></script>

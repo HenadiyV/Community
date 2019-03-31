@@ -1,0 +1,102 @@
+﻿@model IEnumerable<Community.Domain.ViewModel.SearchUserResult>
+@{
+    ViewBag.Title = "Админ-Результат поиска";
+}
+
+
+<style>
+    .mySumbit {
+        width: 100%;
+    }
+</style>
+
+<div class="row">
+    <div class="col-md-4 ">
+        <div class="site-output">
+            <div class="col-md-2 no-padding-left hidden-sm hidden-xs">
+                <div class="left-sidebar">
+                    <div id="sidebar-stick">
+
+                        <ul class="menu-sidebar">
+
+                            <li><a href="~/Admin/SearchAdmin"><i class="fa fa-reply"></i>Вернуться</a></li>
+
+
+                            <li><a href="~/Admin/Index"><i class="fa fa-sign-out"></i>На главную</a></li>
+                        </ul>
+
+                    </div><!-- // sidebar-stick -->
+                    <div class="clear"></div>
+                </div><!-- // left-sidebar -->
+            </div><!-- // col-md-2 style="width:50%"-->
+        </div>
+    </div>
+    <div class="col-md-8 ">
+        @{
+            ViewBag.Title = "Данные пользователей";
+            AjaxOptions ajaxOptions = new AjaxOptions
+            {
+                UpdateTargetId = "tableBody",
+                Url = Url.Action("AddFrend"),
+                LoadingElementId = "loading",
+                LoadingElementDuration = 1000,
+            };
+        }
+        <div id="tableBody" style="font-size:large;color:red"></div>
+        @foreach (var p in Model)
+        {
+            <br />
+            <div class="col-md-10" style="border:solid 2px ">
+                <div class="row">
+
+
+                    <div class="col-md-4">
+
+                        <img src="~/Files/User/@p.User.Id/avatar/@p.UserSeting.Avatar" alt="" style="width:150px" />
+
+                    </div>
+                    <div class="col-md-8">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <br />
+                                <div class="title"><h2>@p.User.Name</h2></div>
+                                <h2>@p.User.FirstName</h2>
+                                @if (p.UserSeting.Surname)
+                                {<h2>@p.User.Surname</h2>}
+                                @if (p.UserSeting.Email)
+                                {<h2>@p.User.Email</h2>}
+                            </div>
+                            <div class="col-md-6">
+                                <br />
+                                @using (Html.BeginForm("AddDescriptionAdmin", "Admin", FormMethod.Get))
+                                {
+                                    <div>
+
+                                        <input type="text" hidden="hidden" name="a" value="3" />@**@
+                                        <input type="text" hidden="hidden" name="Id" value="@p.User.Id" />
+                                        <button type="submit" class="mySumbit">Написать сообщение</button>
+                                    </div>
+                                }
+
+                                @*@using (Ajax.BeginForm(ajaxOptions))
+                                {
+                                    <div>
+
+                                        <input type="number" hidden="hidden" name="Id_user" value="@p.User.Id" /><br />
+                                        <button type="submit" class="mySumbit">Добавить  в  друзья</button>
+                                    </div>
+                                }*@
+
+                            </div>
+                        </div>
+                    </div>
+                    @*style=" margin-left:3%;"<span style=" margin-left:3%;">@Html.ActionLink("Добавить в друзья", "AddFrend", new { Id = p.User.Id })</span>*@
+                </div>
+            </div>
+
+            <div> <br /> </div>
+        }
+
+    </div>
+
+</div>

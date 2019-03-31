@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Community.Domain.Entities.User>
+<div class="row">
+    <div class="col-md-2">
+        <div class="site-output">
+            <div class="col-md-6 no-padding-left hidden-sm hidden-xs">
+                <div class="left-sidebar">
+                    <div id="sidebar-stick">
+
+                        <ul class="menu-sidebar">
+                            <li><a href="~/Admin/UserDescription/@ViewBag.Id"><i class="fa fa-reply"></i>Вернуться</a></li>
+
+                            <li><a href="~/Admin/Index"><i class="fa fa-sign-out"></i>Выход</a></li>
+                        </ul>
+
+                    </div><!-- // sidebar-stick -->
+                    <div class="clear"></div>@**@
+                </div><!-- // left-sidebar -->
+            </div><!-- // col-md-2 -->
+        </div>
+    </div>
+    <div class="col-md-10">
+        @if (Model != null)
+        {
+            foreach (var us in Model)
+            {
+                <div style="border:2px dashed">
+                    <h3>@us.Name</h3>
+                    <h3>@us.FirstName</h3>
+                    <h3>@us.Surname</h3>
+                    <h3>@us.Email</h3>
+                </div>
+            }
+        }
+        </div>
+</div>

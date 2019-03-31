@@ -1,0 +1,85 @@
+﻿<html>
+<body>
+    <!--======= header =======-->
+
+    <header>
+        <div class="container-full">
+            <div class="row">
+                <div class="col-lg-2 col-md-2 col-sm-12">
+                    <a id="main-category-toggler" class="hidden-md hidden-lg hidden-md" href="#">
+                        <i class="fa fa-navicon"></i>
+                    </a>
+                    <a id="main-category-toggler-close" class="hidden-md hidden-lg hidden-md" href="#">
+                        <i class="fa fa-close"></i>
+                    </a>
+                </div><!-- // col-md-2 -->
+                <div class="col-lg-3 col-md-3 col-sm-6 hidden-xs hidden-sm">
+                    <div class="search-form">
+                        <div>
+                            @using (Html.BeginForm("PipelSearchAdmin", "Admin", FormMethod.Post, new { @class = "search-form" }))
+                            {
+                                <input type="text" name="name" placeholder="Search pipel..." />
+                                <input type="submit" value="Поиск" />
+                            }
+                            <div id="results">
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div><!-- // col-md-3 -->
+                
+                <div class="col-lg-2 col-md-2 col-sm-4 hidden-xs hidden-sm">
+                    <ul class="notifications">
+                        <li class="dropdown">
+                            <a href="~/Admin/ListUser">
+                                <i class="fa fa-users"></i>
+
+                                <span class="badge badge-color1 header-badge">@ViewBag.user</span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-friend-requests "></ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" data-toggle="dropdown">
+                                <i class="fa fa-info-circle"></i>
+                                <span class="badge badge-color2 header-badge">@ViewBag.description</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="row">
+        <div class="site-output">
+            <div class="col-md-2 no-padding-left hidden-sm hidden-xs">
+                <div class="left-sidebar">
+                    <div id="sidebar-stick">
+                        <ul class="menu-sidebar">
+                            <li><a href="~/Admin/SearchAdmin"><i class="fa fa-search"></i>Поиск</a></li>
+                          
+                        </ul>
+                        <ul class="menu-sidebar">
+
+                            <li><i class="fa fa-friends"></i><b> Создать сообщение</b></li>
+                            <li> @Html.ActionLink("Всем ", "AddDescriptionAdmin", new { a = 1, Id = 0 })</li>
+                            <li> @Html.ActionLink("Приватное", "ListUser", new { a = 3, Id = 0 })</li>
+                        </ul>
+                     
+                        <ul class="menu-sidebar">
+                            <li><a href="~/Admin/ListUser"><i class="fa fa-users"></i>Список пользователей</a></li>
+                            <li>   <a href="~/Home/Index"><i class="fa fa-sign-out"></i>Выход </a></li>
+                        </ul>
+
+                    </div><!-- // sidebar-stick -->
+                    <div class="clear"></div>
+                </div><!-- // left-sidebar -->
+            </div><!-- // col-md-2 -->
+        </div>
+        <div class="col-md-10">
+            <h3>Привет админ</h3>
+            @{Html.RenderPartial("DescriptionAdminView");}
+        </div>
+    </div>
+</body>
+</html>

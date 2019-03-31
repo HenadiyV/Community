@@ -1,0 +1,143 @@
+﻿
+@{
+    ViewBag.Title = "Админ-поиск";
+}
+
+    <div class="row">
+        <div class="col-md-4 ">
+            <div class="site-output">
+                <div class="col-md-2 no-padding-left hidden-sm hidden-xs">
+                    <div class="left-sidebar">
+                        <div id="sidebar-stick">
+
+                            <ul class="menu-sidebar">
+                             
+                                <li><a href="~/Admin/Index"><i class="fa fa-reply"></i>Вернуться</a></li>
+                             
+                                <li><a href="~/Home/Index"><i class="fa fa-sign-out"></i>Выход</a></li>
+                            </ul>
+
+                        </div><!-- // sidebar-stick -->
+                        <div class="clear"></div>
+                    </div><!-- // left-sidebar -->
+                </div><!-- // col-md-2 style="width:50%"-->
+            </div>
+        </div>
+        <div class="col-md-8 ">
+            <div class="row">
+               
+                <div class="col-md-8">
+                    <div class="col-md-4">
+                        <label>Поиск по городу</label>
+                    </div>
+                    @using (Html.BeginForm("SearchUserAdmin", "Admin", FormMethod.Post))
+                    {
+                        <div>
+                            @Html.DropDownList("City", ViewBag.city as SelectList)
+                            <input type="text" hidden="hidden" name="act" value="1" />
+                            <button type="submit">поиск</button>
+                        </div>
+                    }
+                   
+                </div>
+
+                <div class="col-md-8">
+                    <div class="col-md-4">
+                        <label>Поиск по имени</label>
+                    </div>
+                    @using (Html.BeginForm("SearchUserAdmin", "Admin", FormMethod.Post))
+                    {
+                        <div>
+                            <input type="text" hidden="hidden" name="act" value="2" />@**@
+
+                            <input type="text" name="name" />
+                            <button type="submit">поиск</button>
+                        </div>
+                    }
+                   
+                </div>
+                <div class="col-md-8">
+                    <div class="col-md-4">
+                        <label>Поиск по отчеству </label>
+                    </div>
+                    @using (Html.BeginForm("SearchUserAdmin", "Admin", FormMethod.Post))
+                    {
+                        <div>
+                            <input type="text" hidden="hidden" name="act" value="3" />@**@
+
+                            <input type="text" name="firstname" />
+                            <button type="submit">поиск</button>
+                        </div>
+                    }
+                    
+                </div>
+                <div class="col-md-8">
+                    <div class="col-md-4">
+                        <label>Поиск по фамилии </label>
+                    </div>
+                    @using (Html.BeginForm("SearchUserAdmin", "Admin", FormMethod.Post))
+                    {
+                        <div>
+                            <input type="text" hidden="hidden" name="act" value="4" />@**@
+
+                            <input type="text" name="surname" />
+                            <button type="submit">поиск</button>
+                        </div>
+                    }
+                  
+                </div>
+                <div class="col-md-8">
+                    <div class="col-md-4">
+                        <label>Поиск по полу </label>
+                    </div>
+                    @using (Html.BeginForm("SearchUserAdmin", "Admin", FormMethod.Post))
+                    {
+                        <div>
+                            <input type="text" hidden="hidden" name="act" value="5" />@**@
+
+                            
+                            @Html.DropDownList("gender", ViewBag.gander as SelectList)
+                            <button type="submit">поиск</button>
+                        </div>
+                    }
+                    
+                </div>
+                <div class="col-md-8">
+                    <div class="col-md-4">
+                        <label>Поиск по возрасту </label>
+                    </div>
+                    @using (Html.BeginForm("SearchUserAdmin", "Admin", FormMethod.Post))
+                    {
+                        <div>
+                            <span style="margin-left:5%"> @Html.DropDownList("Data", ViewBag.listData as SelectList)</span>
+                            <input type="text" hidden="hidden" name="act" value="6" />
+                            <button type="submit">поиск</button>
+                        </div>
+                    }
+                   
+                </div>
+
+                <div id="results"></div>
+            </div>
+
+
+            <div class="col-md-8">
+
+                <div>
+                  
+
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+    @* <script src="~/Scripts/jquery-3.2.1.min.js"></script>
+    <script src="~/Scripts/jquery.sticky-kit.min.js"></script>
+    <script src="~/Scripts/custom.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/imagesloaded.pkgd.min.js"></script>
+    <script src="~/Scripts/grid-blog.min.js"></script>
+    <script src="~/Scripts/jquery-1.8.0.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>*@
+
+

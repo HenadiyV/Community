@@ -1,0 +1,167 @@
+﻿@model IEnumerable<Community.Domain.Entities.User>
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Поиск</title>
+    <meta name="keywords" content="Blog website templates" />
+    <meta name="description" content="Author - Personal Blog Wordpress Template">
+    <meta name="author" content="Rabie Elkheir">
+    <meta name="community" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap Core CSS -->
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet">
+    <!-- Owl Carousel Assets -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+    <!--Google Fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800|Raleway:400,500,700|Roboto:300,400,500,700,900|Ubuntu:300,300i,400,400i,500,500i,700" rel="stylesheet">
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="~/Content/style.css" />
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="~/Content/responsive.css" />
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+   
+</head>
+
+<html>
+<body>
+    @**@
+    <div class="row">
+        <div class="col-md-4 ">
+            <div class="site-output">
+                <div class="col-md-2 no-padding-left hidden-sm hidden-xs">
+                    <div class="left-sidebar">
+                        <div id="sidebar-stick">
+
+                            <ul class="menu-sidebar">
+                                <li><a href="~/Home/Search"><i class="fa fa-search"></i>Расширенный поиск</a></li>
+                                <li><a href="~/Home/PageUser"><i class="fa fa-home"></i>Вернуться</a></li>
+                                @*<li><a href="~/Home/AddFrend"><i class="fa fa-edit"></i>Добавить в друзья</a></li>*@
+                                <li><a href="~/Home/FrendRemove"><i class="fa fa-gear"></i>Удалить из друзей</a></li>
+                                <li><a href="~/Home/Index"><i class="fa fa-sign-out"></i>Выход</a></li>
+                            </ul>
+
+                        </div><!-- // sidebar-stick -->
+                        <div class="clear"></div>
+                    </div><!-- // left-sidebar -->
+                </div><!-- // col-md-2 style="width:50%"-->
+            </div>
+        </div>
+        <div class="col-md-8">
+
+            <div>
+                @{
+                    ViewBag.Title = "Данные пользователей";
+                    AjaxOptions ajaxOptions = new AjaxOptions
+                    {
+                        UpdateTargetId = "tableBody",
+                        Url = Url.Action("AddFrend"),
+                        LoadingElementId = "loading",
+                        LoadingElementDuration = 1000,
+                    };
+                }
+
+                @*@Scripts.Render("~/scripts/jquery-1.10.2.min.js")
+                    @Scripts.Render("~/scripts/jquery.unobtrusive-ajax.min.js")*@
+                <div id="searchresults">
+                    @foreach (var p in Model)
+                    {
+                        <div class="video-item">
+
+                            <div class="col-md-10">
+                                @ViewBag.mess
+                                <div class="title"><h2>@p.Name</h2></div>
+                                <h2>@p.FirstName</h2>
+                                <h2>@p.Surname</h2>
+                                <h2>@p.Email</h2>
+
+
+                                @*@Html.ActionLink("Добавить в друзья", "AddFrend", new { Id = p.Id })
+                                    <form method="post" action="~/Home/AddFrend1">
+                                        <input type="number" hidden="hidden" name="Id_user" value="@p.Id" /><br />
+
+                                        <input type="submit" value="Отправить" />
+                                    </form>*@
+                                <div class="row">
+                                    <div class="col-md-4">
+
+                                        @using (Ajax.BeginForm(ajaxOptions))
+                                        {
+                                            <div>
+
+                                                <input type="number" hidden="hidden" name="Id_user" value="@p.Id" /><br />
+                                                <button type="submit">Добавить в друзья</button>
+                                            </div>
+                                        }
+                                    </div>
+                                    <div class="col-md-4">
+                                        @using (Html.BeginForm("AddDescription", "Home", FormMethod.Get))
+                                        {
+                                            <div>
+                                                <input type="number" hidden="hidden" name="a" value="3" />
+
+                                                <input type="number" hidden="hidden" name="Id" value="@p.Id" /><br />
+                                                <button type="submit">Написать</button>
+                                            </div>
+                                        }
+                                    </div>
+                                    <div class="col-md-4">
+                                        @using (Html.BeginForm("ViewUser", "Home", FormMethod.Get))
+                                        {
+                                            <div>
+                                                <input type="number" hidden="hidden" name="Id" value="@p.Id" /><br />
+                                                <button type="submit">Подробно</button>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                                @*{
+                                    <div>
+                                        <input type="number" hidden="hidden" name="a" value="3" />
+
+                                        <input type="number" hidden="hidden" name="Id" value="@p.Id" /><br />
+                                        <button type="submit">Написать</button>
+                                    </div>
+                                    }*@
+
+                                @*@using (Ajax.BeginForm("AddDescription", new AjaxOptions { UpdateTargetId = "results" }))
+                                    {
+                                        <div>
+                                            <input type="number" hidden="hidden" name="a" value="3" />
+
+                                            <input type="number" hidden="hidden" name="Id" value="@p.Id" /><br />
+                                            <button type="submit">Написать</button>
+                                        </div>
+                                    }*@
+                                <div id="tableBody"></div>
+                                <div id="results"></div>
+                            </div>
+
+                        </div>
+
+                    }
+                </div>
+                @*<div id="loading" class="load" style="display: none">
+                        <p>Loading Data...</p>
+                    </div>*@
+
+            </div>
+        </div>
+    </div>
+
+    @*<script src="~/Scripts/jquery-3.2.1.min.js"></script>
+        <script src="~/Scripts/jquery.sticky-kit.min.js"></script>
+        <script src="~/Scripts/custom.js"></script>
+        <script src="~/Scripts/bootstrap.min.js"></script>
+        <script src="~/Scripts/imagesloaded.pkgd.min.js"></script>
+        <script src="~/Scripts/grid-blog.min.js"></script>
+        <script src="~/Scripts/jquery-1.8.0.min.js"></script>
+        <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>*@
+</body>
+            </html>

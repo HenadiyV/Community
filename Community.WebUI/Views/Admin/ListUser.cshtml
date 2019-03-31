@@ -1,0 +1,95 @@
+﻿@model IEnumerable<Community.Domain.Entities.User>
+
+<body>
+
+    <div class="row">
+        <div class="col-md-2">
+            <div class="site-output">
+                <div class="col-md-2 no-padding-left hidden-sm hidden-xs">
+                    <div class="left-sidebar">
+                        <div id="sidebar-stick">
+
+                            <ul class="menu-sidebar">
+                                <li><a href="~/Admin/Index"><i class="fa fa-reply"></i>Вернуться</a></li>
+
+                                <li><a href="~/Home/Index"><i class="fa fa-sign-out"></i>Выход</a></li>
+                            </ul>
+
+                        </div><!-- // sidebar-stick -->
+                        <div class="clear"></div>@**@
+                    </div><!-- // left-sidebar -->
+                </div><!-- // col-md-2 -->
+            </div>
+        </div>
+        <div class="col-md-10">
+            @*<p>
+                @Html.ActionLink("Добавить", "AddUser")
+            </p>*@
+            <h2 style="margin-left:30%;">список пользователей</h2>
+
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FirstName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Surname)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Email)
+                    </th>
+                    @*<th>
+                        @Html.DisplayNameFor(model => model.BirthDay)
+                    </th>*@
+
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FirstName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Surname)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Email)
+                        </td>
+                        @*<td>
+                            @Html.DisplayFor(modelItem => item.BirthDay)
+                        </td>*@
+                        <td>
+
+                            @Html.ActionLink("Детально", "Details", new { Id = item.Id })|
+                            @Html.ActionLink("Написать", "AddDescriptionAdmin", new { a = 3, Id = item.Id })|
+
+                            @if (item.RoleId != 1)
+                            {
+                                @Html.ActionLink("Удалить", "Delete", new { Id = item.Id })}
+
+                            @if (item.RoleId != 1)
+                            {@Html.ActionLink("Баня", "UserBan", new { Id = item.Id })}
+
+
+                        </td>
+                    </tr>
+                }
+
+            </table>
+            @*<div>
+                @Html.ActionLink("Back to List", "Index")
+            </div>*@
+        </div>
+    </div>
+
+</body>
+</html>
